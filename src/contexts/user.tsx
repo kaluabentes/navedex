@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 interface State {
+  ready: boolean;
   token: string | undefined;
 }
 
@@ -16,7 +17,7 @@ interface UserProviderProps {
 
 export type Dispatch = (payload: State) => void;
 
-const INITIAL_STATE = { token: undefined };
+const INITIAL_STATE = { ready: false, token: undefined };
 
 const UserStateContext = createContext<State>(INITIAL_STATE);
 const UserDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -28,7 +29,7 @@ export function UserProvider({ children }: UserProviderProps) {
     const persistedState = localStorage.getItem("user");
 
     if (persistedState) {
-      setState(JSON.parse(persistedState));
+      setState({ ready: true, ...JSON.parse(persistedState) });
     }
   }, []);
 
