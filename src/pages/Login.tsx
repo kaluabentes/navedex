@@ -3,12 +3,16 @@ import { Helmet } from "react-helmet";
 
 import LoginForm from "components/organisms/LoginForm";
 import CenterElementPage from "components/atoms/CenterElementPage";
+import { useUserContext } from "contexts/user";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [, dispatch] = useUserContext();
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    dispatch({ token: "token" });
+  }
 
   return (
     <>
