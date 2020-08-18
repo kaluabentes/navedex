@@ -4,7 +4,11 @@
 
 The system consists of a web app for viewing and creating browsers, with information such as: names, ages, positions, company time and projects that participated.
 
-[Live here](https://navedex2.netlify.app/)
+[Demo](https://navedex2.netlify.app/)
+
+## Login
+
+Digite qualquer email e password para entrar na demo.
 
 ## Commands
 
@@ -17,3 +21,7 @@ The system consists of a web app for viewing and creating browsers, with informa
 1. Merge into master;
 2. In master, create a tag with the release version.
 3. Push
+
+## Dificuldades
+
+- API não permitindo criar novo usuário, todos os endpoints estão exigindo token, mesmo os que deveriam ser públicos.
