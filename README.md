@@ -16,3 +16,4 @@ O sistema consiste em uma web app para visualização e criação dos navers, po
 
 1. Merge into master;
 2. In master, create a tag with the release version.
+3. Push
