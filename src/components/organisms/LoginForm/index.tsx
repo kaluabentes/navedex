@@ -34,7 +34,7 @@ export default function LoginForm({
         placeholder="E-mail"
       />
       <InputLabel
-        id="email"
+        id="password"
         onChange={onPasswordChange}
         value={password}
         label="Senha"
