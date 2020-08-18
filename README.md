@@ -4,7 +4,7 @@
 
 O sistema consiste em uma web app para visualização e criação dos navers, possuindo informações como: nomes, idades, cargos, tempo de empresa e projetos que participou.
 
-[Live here](https://google.com)
+[Live here](https://navedex2.netlify.app/)
 
 ## Commands
 
