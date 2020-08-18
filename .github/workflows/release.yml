@@ -3,10 +3,10 @@ name: "Release"
 on:
   push:
     tags:
-    - '*'
+      - "*"
 
 jobs:
-   test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,6 @@ jobs:
 
       - name: Typecheck
         run: yarn typecheck
-
   deploy:
     name: "Deploy to Netlify"
     steps:
