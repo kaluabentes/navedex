@@ -11,6 +11,13 @@ export const Image = styled.img<{
       max-width: 235px;
     `}
 
+  ${(props) =>
+    props.size === "small" &&
+    css`
+      width: 100%;
+      max-width: 145px;
+    `}
+
   ${(props) => css`
     margin-bottom: ${props.marginBottom}px;
   `}
