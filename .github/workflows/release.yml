@@ -6,7 +6,7 @@ on:
       - "*"
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,9 +35,8 @@ jobs:
 
       - name: Typecheck
         run: yarn typecheck
-  deploy:
-    name: "Deploy to Netlify"
-    steps:
+
+      - name: Deploy to Neflify
       - uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
