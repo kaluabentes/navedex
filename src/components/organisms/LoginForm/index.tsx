@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Logo from "components/atoms/Logo";
 import InputLabel from "components/molecules/InputLabel";
@@ -20,8 +20,21 @@ export default function LoginForm({
   onPasswordChange,
   onSubmit,
 }: LoginFormProps) {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  function handleSubmit() {
+    const formElement = formRef.current as HTMLFormElement;
+
+    if (!formElement.checkValidity()) {
+      formElement.reportValidity();
+      return;
+    }
+
+    onSubmit();
+  }
+
   return (
-    <Form>
+    <Form ref={formRef}>
       <Logo size="large" marginBottom={40} />
       <InputLabel
         id="email"
@@ -43,7 +56,9 @@ export default function LoginForm({
         marginBottom={32}
         placeholder="Senha"
       />
-      <Button type="button">Entrar</Button>
+      <Button type="button" onClick={handleSubmit}>
+        Entrar
+      </Button>
     </Form>
   );
 }
