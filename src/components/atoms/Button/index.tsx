@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { COLOR_PRIMARY } from "styles/colors";
 
-export default styled.button`
+export default styled.button<{ isInline?: boolean }>`
   font-size: 0.875rem;
   padding: 12px 8px;
   background: ${COLOR_PRIMARY};
@@ -9,4 +9,12 @@ export default styled.button`
   color: white;
   width: 100%;
   display: block;
+
+  ${(props) =>
+    props.isInline &&
+    css`
+      display: inline-block;
+      width: auto;
+      padding: 12px 25px;
+    `}
 `;
