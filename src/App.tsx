@@ -11,15 +11,11 @@ export default function App() {
   const history = useHistory();
 
   useEffect(() => {
-    if (!user.token) {
+    if (user.ready && !user.token) {
       history.push("/");
       return;
     }
-
-    if (history.location.pathname === "/") {
-      history.push("/navers");
-    }
-  }, [history, user.token]);
+  }, [history, user.token, user.ready]);
 
   return (
     <>
