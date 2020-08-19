@@ -1,5 +1,6 @@
 import React from "react";
 
+import Actionable from "components/atoms/Actionable";
 import IconButton from "components/atoms/IconButton";
 import {
   Container,
@@ -15,6 +16,7 @@ interface NaverCardProps {
   image: string;
   name: string;
   role: string;
+  onClick: () => void;
   onDelete: () => void;
   onEdit: () => void;
 }
@@ -33,12 +35,15 @@ export default function NaverCard({
   image,
   name,
   role,
+  onClick,
   onDelete,
   onEdit,
 }: NaverCardProps) {
   return (
     <Container>
-      <Image src={image} alt={name} />
+      <Actionable type="button" onClick={onClick}>
+        <Image src={image} alt={name} />
+      </Actionable>
       <Name>{name}</Name>
       <Role>{role}</Role>
       <IconButton icon="delete" onClick={onDelete} />
