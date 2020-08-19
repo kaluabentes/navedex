@@ -9,6 +9,7 @@ export default styled.button<{ isInline?: boolean }>`
   color: white;
   width: 100%;
   display: block;
+  font-weight: 600;
 
   ${(props) =>
     props.isInline &&
