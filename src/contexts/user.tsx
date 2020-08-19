@@ -29,7 +29,7 @@ export function UserProvider({ children }: UserProviderProps) {
     const persistedState = localStorage.getItem("user");
 
     if (persistedState) {
-      setState({ ready: true, ...JSON.parse(persistedState) });
+      setState({ ...JSON.parse(persistedState), ready: true });
     }
   }, []);
 
