@@ -14,17 +14,19 @@ import ConfirmModal from "components/organisms/ConfirmModal";
 import AlertModal from "components/organisms/AlertModal";
 import NaversApi from "services/NaversApi";
 
+const INITIAL_STATE = {
+  id: 0,
+  image: "",
+  name: "",
+  role: "",
+  age: "",
+  companyTime: "",
+  projects: "",
+};
+
 export default function ListNavers() {
   const [navers, isLoading, fetchNavers] = useNaversIndex();
-  const [naver, setNaver] = useState<Naver>({
-    id: 0,
-    image: "",
-    name: "",
-    role: "",
-    age: "",
-    companyTime: "",
-    projects: "",
-  });
+  const [naver, setNaver] = useState<Naver>(INITIAL_STATE);
   const [isNaverOpen, setIsNaverOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
