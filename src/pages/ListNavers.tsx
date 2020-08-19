@@ -82,7 +82,7 @@ export default function ListNavers() {
               role={naver.role}
               onClick={() => openNaverDetail(naver)}
               onDelete={() => openConfirmDelete(naver)}
-              onEdit={() => {}}
+              onEdit={() => history.push(`/navers/edit/${naver.id}`)}
             />
           ))
         )}
