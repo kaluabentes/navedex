@@ -24,6 +24,10 @@ export default function App() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
       </Helmet>
       <GlobalStyle />
       <Routes />
