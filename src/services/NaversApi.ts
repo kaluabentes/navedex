@@ -39,7 +39,7 @@ export default class NaversApi {
         const newData = data.filter((naver: Naver) => naver.id !== id);
 
         localStorage.setItem("navers", JSON.stringify(newData));
-        resolve({ data: { id } });
+        resolve({ data: { message: "ok" } });
       }, 2000);
     });
   }
@@ -51,7 +51,36 @@ export default class NaversApi {
         const newData = [...data, { id: data.length + 1, ...naver }];
 
         localStorage.setItem("navers", JSON.stringify(newData));
+        resolve({ data: { message: "ok" } });
+      }, 2000);
+    });
+  }
+
+  static show(id: number): Promise<any> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const data = getLocalData();
+        const naver = data.find((naver: Naver) => naver.id === Number(id));
+
         resolve({ data: naver });
+      }, 1000);
+    });
+  }
+
+  static update(id: number, payload: any): Promise<any> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const data = getLocalData();
+        const newData = data.map((naver: Naver) => {
+          if (naver.id === Number(id)) {
+            return { ...naver, ...payload };
+          }
+
+          return naver;
+        });
+
+        localStorage.setItem("navers", JSON.stringify(newData));
+        resolve({ data: { message: "ok" } });
       }, 2000);
     });
   }
