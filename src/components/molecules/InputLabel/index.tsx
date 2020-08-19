@@ -8,11 +8,13 @@ const DEFAULT_PROPS = {
   isRequired: false,
   marginBottom: 0,
   placeholder: "",
+  onKeyPress: () => {},
 };
 
 interface InputLabelProps {
   id: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   value: string;
   type: string;
   label: string;
@@ -24,6 +26,7 @@ interface InputLabelProps {
 export default function InputLabel({
   id,
   onChange,
+  onKeyPress,
   value,
   type,
   label,
@@ -37,6 +40,7 @@ export default function InputLabel({
       <Input
         id={id}
         onChange={onChange}
+        onKeyPress={onKeyPress}
         value={value}
         type={type}
         placeholder={placeholder}
