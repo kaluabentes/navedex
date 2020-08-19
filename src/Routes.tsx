@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import ListNavers from "./pages/ListNavers";
 import CreateNaver from "./pages/CreateNaver";
+import EditNaver from "./pages/EditNaver";
 
 export default function Routes() {
   return (
@@ -16,6 +17,9 @@ export default function Routes() {
       </Route>
       <Route path="/navers/create">
         <CreateNaver />
+      </Route>
+      <Route path="/navers/edit/:id">
+        <EditNaver />
       </Route>
     </Switch>
   );
