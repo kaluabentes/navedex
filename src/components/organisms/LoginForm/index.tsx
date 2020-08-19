@@ -33,6 +33,12 @@ export default function LoginForm({
     onSubmit();
   }
 
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  }
+
   return (
     <Form ref={formRef}>
       <Logo size="large" marginBottom={40} />
@@ -49,6 +55,7 @@ export default function LoginForm({
       <InputLabel
         id="password"
         onChange={onPasswordChange}
+        onKeyPress={handleKeyPress}
         value={password}
         label="Senha"
         type="password"
