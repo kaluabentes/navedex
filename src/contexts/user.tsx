@@ -30,6 +30,8 @@ export function UserProvider({ children }: UserProviderProps) {
 
     if (persistedState) {
       setState({ ...JSON.parse(persistedState), ready: true });
+    } else {
+      setState({ ...INITIAL_STATE, ready: true });
     }
   }, []);
 
