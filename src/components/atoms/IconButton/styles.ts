@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
 import { COLOR_PRIMARY } from "styles/colors";
 
 export const Container = styled.button<{ variant?: "default" | undefined }>`
