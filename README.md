@@ -19,7 +19,7 @@ Digite qualquer email e password para entrar na demo.
 ## Releasing/Deploy
 
 1. Merge into master;
-2. In master, create a tag with the release version.
+2. Create a tag with the release version.
 3. Push
 
 ## Dificuldades
