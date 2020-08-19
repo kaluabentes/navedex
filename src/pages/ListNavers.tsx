@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import App from "components/templates/App";
 import Title from "components/atoms/Title";
@@ -13,7 +14,7 @@ import ConfirmModal from "components/organisms/ConfirmModal";
 import AlertModal from "components/organisms/AlertModal";
 import NaversApi from "services/NaversApi";
 
-export default function Navers() {
+export default function ListNavers() {
   const [navers, isLoading, fetchNavers] = useNaversIndex();
   const [naver, setNaver] = useState<Naver>({
     id: 0,
@@ -28,6 +29,7 @@ export default function Navers() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const history = useHistory();
 
   function openNaverDetail(naver: Naver) {
     setNaver(naver);
@@ -55,7 +57,11 @@ export default function Navers() {
     <App>
       <TitleHeader>
         <Title size="large">Navers</Title>
-        <Button variant="primary" isInline>
+        <Button
+          variant="primary"
+          isInline
+          onClick={() => history.push("/navers/create")}
+        >
           Adicionar Naver
         </Button>
       </TitleHeader>
