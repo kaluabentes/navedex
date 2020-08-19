@@ -5,6 +5,9 @@ export interface Naver {
   image: string;
   name: string;
   role: string;
+  age: string;
+  companyTime: string;
+  projects: string;
 }
 
 export default class NaversApi {
