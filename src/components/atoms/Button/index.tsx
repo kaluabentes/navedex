@@ -1,21 +1,46 @@
-import styled, { css } from "styled-components";
-import { COLOR_PRIMARY } from "styles/colors";
+import React from "react";
 
-export default styled.button<{ isInline?: boolean }>`
-  font-size: 0.875rem;
-  padding: 12px 8px;
-  background: ${COLOR_PRIMARY};
-  border: 0;
-  color: white;
-  width: 100%;
-  display: block;
-  font-weight: 600;
+import { Container, Loader, DotLoader } from "./styles";
 
-  ${(props) =>
-    props.isInline &&
-    css`
-      display: inline-block;
-      width: auto;
-      padding: 12px 25px;
-    `}
-`;
+interface ButtonProps {
+  variant: "primary" | "light";
+  onClick?: () => void;
+  children: React.ReactNode;
+  isInline?: boolean;
+  isLoading?: boolean;
+}
+
+const DEFAULT_PROPS = {
+  isInline: false,
+  isLoading: false,
+  onClick: () => {},
+};
+
+export default function Button({
+  variant,
+  onClick,
+  children,
+  isInline,
+  isLoading,
+}: ButtonProps) {
+  return (
+    <Container
+      variant={variant}
+      onClick={onClick}
+      type="button"
+      isInline={isInline}
+    >
+      {isLoading ? (
+        <Loader>
+          <DotLoader />
+          <DotLoader />
+          <DotLoader />
+        </Loader>
+      ) : (
+        children
+      )}
+    </Container>
+  );
+}
+
+Button.defaultProps = DEFAULT_PROPS;
