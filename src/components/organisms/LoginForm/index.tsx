@@ -63,7 +63,7 @@ export default function LoginForm({
         marginBottom={32}
         placeholder="Senha"
       />
-      <Button type="button" onClick={handleSubmit}>
+      <Button variant="primary" onClick={handleSubmit}>
         Entrar
       </Button>
     </Form>
