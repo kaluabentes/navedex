@@ -92,7 +92,7 @@ export default function ListNavers() {
         naver={naver || {}}
         onClose={() => setIsNaverOpen(false)}
         onDelete={() => openConfirmDelete(naver)}
-        onEdit={() => {}}
+        onEdit={() => history.push(`/navers/edit/${naver.id}`)}
       />
       <ConfirmModal
         isOpen={isConfirmOpen}
