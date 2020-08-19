@@ -10,6 +10,7 @@ import useNaversIndex from "hooks/useNaversIndex";
 import { Naver } from "services/NaversApi";
 import NaverDetailModal from "components/organisms/NaverDetailModal";
 import ConfirmModal from "components/organisms/ConfirmModal";
+import AlertModal from "components/organisms/AlertModal";
 import NaversApi from "services/NaversApi";
 
 export default function Navers() {
@@ -26,6 +27,7 @@ export default function Navers() {
   const [isNaverOpen, setIsNaverOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   function openNaverDetail(naver: Naver) {
     setNaver(naver);
@@ -45,6 +47,7 @@ export default function Navers() {
       setIsConfirmOpen(false);
       setIsNaverOpen(false);
       setIsDeleting(false);
+      setIsAlertOpen(true);
     });
   }
 
@@ -93,6 +96,12 @@ export default function Navers() {
         confirmLabel="Excluir"
         onCancel={() => setIsConfirmOpen(false)}
         onConfirm={deleteNaver}
+      />
+      <AlertModal
+        isOpen={isAlertOpen}
+        title="Naver excluído"
+        text="Naver excluído com sucesso!"
+        onClose={() => setIsAlertOpen(false)}
       />
     </App>
   );
