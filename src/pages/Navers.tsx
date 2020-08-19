@@ -9,22 +9,52 @@ import NaverCard from "components/molecules/NaverCard";
 import useNaversIndex from "hooks/useNaversIndex";
 import { Naver } from "services/NaversApi";
 import NaverDetailModal from "components/organisms/NaverDetailModal";
+import ConfirmModal from "components/organisms/ConfirmModal";
+import NaversApi from "services/NaversApi";
 
 export default function Navers() {
-  const [navers, isLoading] = useNaversIndex();
-  const [naver, setNaver] = useState<Naver | undefined>(undefined);
+  const [navers, isLoading, fetchNavers] = useNaversIndex();
+  const [naver, setNaver] = useState<Naver>({
+    id: 0,
+    image: "",
+    name: "",
+    role: "",
+    age: "",
+    companyTime: "",
+    projects: "",
+  });
   const [isNaverOpen, setIsNaverOpen] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  function handleNaverClick(naver: Naver) {
+  function openNaverDetail(naver: Naver) {
     setNaver(naver);
     setIsNaverOpen(true);
+  }
+
+  function openConfirmDelete(naver: Naver) {
+    setNaver(naver);
+    setIsConfirmOpen(true);
+  }
+
+  function deleteNaver() {
+    setIsDeleting(true);
+
+    NaversApi.delete(naver.id).then(() => {
+      fetchNavers(true);
+      setIsConfirmOpen(false);
+      setIsNaverOpen(false);
+      setIsDeleting(false);
+    });
   }
 
   return (
     <App>
       <TitleHeader>
         <Title size="large">Navers</Title>
-        <Button isInline>Adicionar Naver</Button>
+        <Button variant="primary" isInline>
+          Adicionar Naver
+        </Button>
       </TitleHeader>
       <NaverCardGrid>
         {isLoading ? (
@@ -41,8 +71,8 @@ export default function Navers() {
               image={naver.image}
               name={naver.name}
               role={naver.role}
-              onClick={() => handleNaverClick(naver)}
-              onDelete={() => {}}
+              onClick={() => openNaverDetail(naver)}
+              onDelete={() => openConfirmDelete(naver)}
               onEdit={() => {}}
             />
           ))
@@ -52,8 +82,17 @@ export default function Navers() {
         isOpen={isNaverOpen}
         naver={naver || {}}
         onClose={() => setIsNaverOpen(false)}
-        onDelete={() => {}}
+        onDelete={() => openConfirmDelete(naver)}
         onEdit={() => {}}
+      />
+      <ConfirmModal
+        isOpen={isConfirmOpen}
+        isLoading={isDeleting}
+        title="Excluir Naver"
+        text="Tem certeza que deseja excluir este Naver?"
+        confirmLabel="Excluir"
+        onCancel={() => setIsConfirmOpen(false)}
+        onConfirm={deleteNaver}
       />
     </App>
   );

@@ -5,6 +5,7 @@ import NaversApi from "services/NaversApi";
 export default function useNaversIndex() {
   const [navers, setNavers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     async function fetchNavers() {
@@ -14,15 +15,19 @@ export default function useNaversIndex() {
         const { data } = await NaversApi.index();
 
         setIsLoading(false);
+        setIsFetching(false);
         setNavers(data);
       } catch (error) {
         setIsLoading(false);
+        setIsFetching(false);
         console.log(error.message);
       }
     }
 
-    fetchNavers();
-  }, []);
+    if (isFetching) {
+      fetchNavers();
+    }
+  }, [isFetching]);
 
-  return [navers, isLoading] as const;
+  return [navers, isLoading, setIsFetching] as const;
 }
