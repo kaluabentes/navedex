@@ -14,6 +14,6 @@ export const Text = styled.p`
 export const CloseButton = styled(IconButton)`
   margin: 0;
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 24px;
+  right: 24px;
 `;
