@@ -42,7 +42,7 @@ export default function CreateNaver() {
     <FormPage title="Adicionar Naver" onBack={() => history.push("/navers")}>
       <NaverForm
         {...naver}
-        isLoading={isSaving}
+        isSaving={isSaving}
         submitLabel="Salvar"
         onChange={handleChange}
         onSubmit={handleSubmit}
