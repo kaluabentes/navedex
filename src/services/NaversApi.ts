@@ -10,6 +10,8 @@ export interface Naver {
   projects: string;
 }
 
+const SERVER_LATENCY_TIME = 2000;
+
 function getLocalData() {
   const persistedData = localStorage.getItem("navers") as string;
   return JSON.parse(persistedData);
@@ -28,7 +30,7 @@ export default class NaversApi {
         }
 
         resolve({ data: JSON.parse(persistedData) });
-      }, 2000);
+      }, SERVER_LATENCY_TIME);
     });
   }
 
@@ -40,7 +42,7 @@ export default class NaversApi {
 
         localStorage.setItem("navers", JSON.stringify(newData));
         resolve({ data: { message: "ok" } });
-      }, 2000);
+      }, SERVER_LATENCY_TIME);
     });
   }
 
@@ -52,7 +54,7 @@ export default class NaversApi {
 
         localStorage.setItem("navers", JSON.stringify(newData));
         resolve({ data: { message: "ok" } });
-      }, 2000);
+      }, SERVER_LATENCY_TIME);
     });
   }
 
@@ -63,7 +65,7 @@ export default class NaversApi {
         const naver = data.find((naver: Naver) => naver.id === Number(id));
 
         resolve({ data: naver });
-      }, 1000);
+      }, SERVER_LATENCY_TIME);
     });
   }
 
@@ -81,7 +83,7 @@ export default class NaversApi {
 
         localStorage.setItem("navers", JSON.stringify(newData));
         resolve({ data: { message: "ok" } });
-      }, 2000);
+      }, SERVER_LATENCY_TIME);
     });
   }
 }
