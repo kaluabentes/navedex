@@ -19,6 +19,7 @@ export default function CreateNaver() {
   const [naver, setNaver] = useState(INITIAL_STATE);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const { id } = useParams();
 
@@ -28,6 +29,7 @@ export default function CreateNaver() {
         const { data } = await NaversApi.show(id);
 
         setNaver(data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -56,7 +58,8 @@ export default function CreateNaver() {
     <FormPage title="Editar Naver" onBack={() => history.push("/navers")}>
       <NaverForm
         {...naver}
-        isLoading={isSaving}
+        isSaving={isSaving}
+        isLoading={isLoading}
         submitLabel="Salvar"
         onChange={handleChange}
         onSubmit={handleSubmit}
