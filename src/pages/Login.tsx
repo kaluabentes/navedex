@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 
@@ -9,8 +9,14 @@ import { useUserContext } from "contexts/user";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [, dispatch] = useUserContext();
+  const [user, dispatch] = useUserContext();
   const history = useHistory();
+
+  useEffect(() => {
+    if (user.token) {
+      history.push("/navers");
+    }
+  }, [user.token, history]);
 
   function handleSubmit() {
     dispatch({ token: "token" });
